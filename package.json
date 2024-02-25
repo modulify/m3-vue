@@ -1,0 +1,54 @@
+{
+  "name": "@modulify/m3-vue",
+  "license": "ISC",
+  "description": "Material design components for vue",
+  "keywords": [
+    "material",
+    "components",
+    "vue"
+  ],
+  "scripts": {
+    "lint": "eslint --ext .js,.mjs,.ts,.vue src tests types",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
+  },
+  "dependencies": {
+    "@floating-ui/core": "^1.6.0",
+    "@floating-ui/dom": "^1.6.3",
+    "lodash.isequal": "^4.5.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.4"
+  },
+  "devDependencies": {
+    "@types/lodash.isequal": "^4.5.8",
+    "@types/node": "^18.15.3",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
+    "@vue/compiler-sfc": "^3.4.19",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-unused-imports": "^3.1.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "vue": "^3.4.19",
+    "vue-router": "^4.3.0"
+  },
+  "contributors": [
+    "Zaitsev Kirill <zaytsev.cmath10@gmail.com>"
+  ],
+  "homepage": "https://github.com/modulify/m3-vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modulify/m3-vue.git"
+  },
+  "packageManager": "yarn@4.1.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

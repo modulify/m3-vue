@@ -1,0 +1,153 @@
+<template>
+    <div
+        :id="id"
+        :class="{
+            ['m3-navigation-tab']: true,
+            ['m3-navigation-tab_in-' + appearance]: true,
+            ['m3-navigation-tab_labelled']: 'label' in $slots || label.length > 0,
+            ['m3-navigation-tab_active']: active,
+        }"
+        v-bind="{
+            ...$attrs,
+            ...('aria-label' in $attrs || 'aria-labelledby' in $attrs ? {} : {
+                'aria-labelledby': labelId,
+            })
+        }"
+        role="tab"
+    >
+        <M3Link
+            ref="button"
+            :aria-labelledby="labelId"
+            :href="href"
+            class="m3-navigation-tab__button"
+            @click="onClick"
+        >
+            <span class="m3-navigation-tab__state">
+                <span class="m3-navigation-tab__icon">
+                    <slot />
+                </span>
+
+                <span
+                    v-if="('label' in $slots || label.length > 0)"
+                    :id="labelIdForDrawer"
+                    :aria-hidden="inDrawer ? 'false' : 'true'"
+                    class="m3-navigation-tab__label"
+                >
+                    <slot name="label">{{ label }}</slot>
+                </span>
+
+                <span
+                    v-if="'badge' in $slots"
+                    :aria-hidden="inDrawer ? 'false' : 'true'"
+                    class="m3-navigation-tab__badge-label"
+                    role="status"
+                >
+                    <slot name="badge" />
+                </span>
+            </span>
+        </M3Link>
+
+        <div
+            v-if="('label' in $slots || label.length > 0)"
+            :id="labelIdForRail"
+            :aria-hidden="inDrawer ? 'true' : 'false'"
+            class="m3-navigation-tab__label"
+        >
+            <slot name="label">{{ label }}</slot>
+        </div>
+
+        <span
+            v-if="'badge' in $slots || badged"
+            :aria-hidden="inDrawer ? 'true' : 'false'"
+            :class="{
+                'm3-navigation-tab__badge': true,
+                'm3-navigation-tab__badge_labelled': 'badge' in $slots,
+                'm3-badge': true,
+                'm3-badge_labelled': 'badge' in $slots,
+            }"
+            role="status"
+        >
+            <slot name="badge" />
+        </span>
+    </div>
+</template>
+
+<script lang="ts" setup>
+import type { Ref } from 'vue'
+import type { Appearance } from '~types/components/navigation'
+
+import { M3Link } from '../link'
+import { M3NavigationAppearance } from './injections'
+
+import {
+  computed,
+  inject,
+  ref,
+} from 'vue'
+import { applyRippleEffect } from '../ripple'
+import makeId from '@/utils/id'
+import { provideM3IconAppearance } from '@/components/icon/injections'
+import { useBreakpoint } from '@/composables/breakpoint'
+
+const props = defineProps({
+  href: {
+    type: String,
+    default: undefined,
+  },
+
+  label: {
+    type: String,
+    default: '',
+  },
+
+  active: {
+    type: Boolean,
+    default: false,
+  },
+
+  badged: {
+    type: Boolean,
+    default: false,
+  },
+
+  /** Disables default click event handler on button element, useful for programmatic navigation. */
+  prevent: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+const emit = defineEmits(['navigate'])
+
+const id = makeId('m3-navigation-item')
+
+const appearance = inject<Ref<Appearance>>(M3NavigationAppearance, ref('auto'))
+const breakpoint = useBreakpoint()
+const button = ref<(typeof M3Link) | null>(null)
+
+const inDrawer = computed(() => breakpoint.value.ge('large') || appearance.value === 'drawer')
+
+const labelIdForDrawer = id + '-label-for-drawer'
+const labelIdForRail = id + '-label-for-rail'
+const labelId = computed(() => inDrawer.value ? labelIdForDrawer : labelIdForRail)
+
+provideM3IconAppearance(() => props.active ? 'filled' : 'outlined')
+
+defineExpose({
+  focus: () => button.value?.focus(),
+  blur: () => button.value?.blur(),
+})
+
+const onClick = (event: MouseEvent) => {
+  if (props.prevent) {
+    event.preventDefault()
+  }
+
+  const _button = button.value
+  if (_button) {
+    applyRippleEffect(_button.getElement() as HTMLElement, event)
+  }
+
+  emit('navigate')
+}
+</script>
