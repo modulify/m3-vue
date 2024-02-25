@@ -53,7 +53,9 @@
             :aria-hidden="inDrawer ? 'true' : 'false'"
             class="m3-navigation-tab__label"
         >
-            <slot name="label">{{ label }}</slot>
+            <slot name="label">
+                {{ label }}
+            </slot>
         </div>
 
         <span

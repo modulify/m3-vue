@@ -16,8 +16,8 @@ const update = (entry: Entry, { content, ...options }: Definition) => {
 export const useCollection = (collection: Ref<[Element, Entry][]>) => {
   return ({
     has: (el: Element) => collection.value.some(([_el]) => _el === el),
-    add: ([el, {content, ...options}]: [Element, Definition]) => {
-      collection.value.push([el, {content, options}])
+    add: ([el, { content, ...options }]: [Element, Definition]) => {
+      collection.value.push([el, { content, options }])
 
       el.classList.toggle('m3-plane-tooltip-target', true)
       el.classList.toggle('m3-plane-tooltip-target_active', options.shown)

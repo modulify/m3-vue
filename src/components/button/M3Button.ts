@@ -98,7 +98,7 @@ export default defineComponent({
       const content = normalize('default' in slots ? slots.default?.() ?? [] : [])
 
       const hasText = content.some(([, isIcon]) => !isIcon)
-      const [, hasLeadingIcon] = content[0]
+      const [, hasLeadingIcon] = content[0] ?? [null, false]
       const [, hasTrailingIcon] = content[content.length - 1] ?? [null, false]
 
       return h(M3Link, {
