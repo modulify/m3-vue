@@ -1,6 +1,26 @@
 TARGET_HEADER=@echo -e '===== \e[34m' $@ '\e[0m'
 YARN=@docker-compose run --rm node yarn
 
+.PHONY: up
+up: ## Starts storybook
+	$(TARGET_HEADER)
+	docker-compose up -d
+
+.PHONY: restart
+restart: ## Restarts all docker services or a particular service, if argument "service" is specified (example: make restart service="storybook").
+	$(TARGET_HEADER)
+
+ifdef service
+	yes | docker-compose rm -s -v $(service) && docker-compose up -d $(service)
+else
+	docker-compose stop && docker-compose up -d
+endif
+
+.PHONY: stop
+stop: ## Stops all docker services
+	$(TARGET_HEADER)
+	docker-compose stop
+
 .PHONY: .yarnrc.yml
 .yarnrc.yml: ## Creates yarn configuration
 	@cp .yarnrc.yml.dist .yarnrc.yml
