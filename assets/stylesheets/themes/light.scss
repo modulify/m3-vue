@@ -1,17 +1,17 @@
 @import "../basics/palette";
 
 // Primary
-$m3-sys-light-primary: $m3-palette-primary-40;
+$m3-sys-light-primary:           $m3-palette-primary-40;
 $m3-sys-light-primary-container: $m3-palette-primary-90;
-$m3-sys-light-on-primary: $m3-palette-primary-100;
+$m3-sys-light-on-primary:           $m3-palette-primary-100;
 $m3-sys-light-on-primary-container: $m3-palette-primary-10;
 
 // Outline
-$m3-sys-light-outline: $m3-palette-neutral-variant-50;
+$m3-sys-light-outline:         $m3-palette-neutral-variant-50;
 $m3-sys-light-outline-variant: $m3-palette-neutral-variant-80;
 
 // Error
-$m3-sys-light-error: $m3-palette-error-40;
+$m3-sys-light-error:    $m3-palette-error-40;
 $m3-sys-light-on-error: $m3-palette-error-100;
 
 // Surface
@@ -46,9 +46,11 @@ $m3-elevation-light-5: 0 4px 4px 0   rgba(0, 0, 0, 0.30), 0 8px 12px 6px rgba(0,
   --m3-sys-on-primary-container: #{$m3-sys-light-on-primary-container};
   --m3-state-layers-primary-opacity-008: #{rgba($m3-sys-light-primary, 0.08)};
   --m3-state-layers-primary-opacity-012: #{rgba($m3-sys-light-primary, 0.12)};
+  --m3-state-layers-primary-opacity-016: #{rgba($m3-sys-light-primary, 0.16)};
   --m3-state-layers-primary-opacity-020: #{rgba($m3-sys-light-primary, 0.20)};
   --m3-state-layers-on-primary-opacity-008: #{rgba($m3-sys-light-on-primary, 0.08)};
   --m3-state-layers-on-primary-opacity-012: #{rgba($m3-sys-light-on-primary, 0.12)};
+  --m3-state-layers-on-primary-opacity-016: #{rgba($m3-sys-light-on-primary, 0.16)};
   --m3-state-layers-on-primary-opacity-020: #{rgba($m3-sys-light-on-primary, 0.20)};
 
   /** Outline */
@@ -60,6 +62,7 @@ $m3-elevation-light-5: 0 4px 4px 0   rgba(0, 0, 0, 0.30), 0 8px 12px 6px rgba(0,
   --m3-sys-on-error: #{$m3-sys-light-on-error};
   --m3-state-layers-error-opacity-008: #{rgba($m3-sys-light-error, 0.08)};
   --m3-state-layers-error-opacity-012: #{rgba($m3-sys-light-error, 0.12)};
+  --m3-state-layers-error-opacity-016: #{rgba($m3-sys-light-error, 0.16)};
   --m3-state-layers-error-opacity-020: #{rgba($m3-sys-light-error, 0.20)};
 
   /** Surface */
@@ -72,9 +75,11 @@ $m3-elevation-light-5: 0 4px 4px 0   rgba(0, 0, 0, 0.30), 0 8px 12px 6px rgba(0,
   --m3-sys-on-surface-variant: #{$m3-sys-light-on-surface-variant};
   --m3-state-layers-on-surface-opacity-008: #{rgba($m3-sys-light-on-surface, 0.08)};
   --m3-state-layers-on-surface-opacity-012: #{rgba($m3-sys-light-on-surface, 0.12)};
+  --m3-state-layers-on-surface-opacity-016: #{rgba($m3-sys-light-on-surface, 0.16)};
   --m3-state-layers-on-surface-opacity-020: #{rgba($m3-sys-light-on-surface, 0.20)};
   --m3-state-layers-on-surface-variant-opacity-008: #{rgba($m3-sys-light-on-surface-variant, 0.08)};
   --m3-state-layers-on-surface-variant-opacity-012: #{rgba($m3-sys-light-on-surface-variant, 0.12)};
+  --m3-state-layers-on-surface-variant-opacity-016: #{rgba($m3-sys-light-on-surface-variant, 0.16)};
   --m3-state-layers-on-surface-variant-opacity-020: #{rgba($m3-sys-light-on-surface-variant, 0.20)};
 
   /** Inverse surface */
@@ -82,6 +87,7 @@ $m3-elevation-light-5: 0 4px 4px 0   rgba(0, 0, 0, 0.30), 0 8px 12px 6px rgba(0,
   --m3-sys-inverse-on-surface: #{$m3-sys-light-inverse-on-surface};
   --m3-state-layers-inverse-on-surface-opacity-008: #{rgba($m3-sys-light-inverse-on-surface, 0.08)};
   --m3-state-layers-inverse-on-surface-opacity-012: #{rgba($m3-sys-light-inverse-on-surface, 0.12)};
+  --m3-state-layers-inverse-on-surface-opacity-016: #{rgba($m3-sys-light-inverse-on-surface, 0.16)};
   --m3-state-layers-inverse-on-surface-opacity-020: #{rgba($m3-sys-light-inverse-on-surface, 0.20)};
 
   /** Secondary container */
@@ -89,6 +95,7 @@ $m3-elevation-light-5: 0 4px 4px 0   rgba(0, 0, 0, 0.30), 0 8px 12px 6px rgba(0,
   --m3-sys-on-secondary-container: #{$m3-sys-light-on-secondary-container};
   --m3-state-layers-on-secondary-container-opacity-008: #{rgba($m3-sys-light-on-secondary-container, 0.08)};
   --m3-state-layers-on-secondary-container-opacity-012: #{rgba($m3-sys-light-on-secondary-container, 0.12)};
+  --m3-state-layers-on-secondary-container-opacity-016: #{rgba($m3-sys-light-on-secondary-container, 0.16)};
   --m3-state-layers-on-secondary-container-opacity-020: #{rgba($m3-sys-light-on-secondary-container, 0.20)};
 
   /** Elevation */
