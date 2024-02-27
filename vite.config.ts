@@ -4,11 +4,20 @@ import svg from 'vite-svg-loader'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  plugins: [vue(), svg()],
+  plugins: [
+    vue(),
+    svg(),
+  ],
 
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+
+  server: {
+    hmr: {
+      clientPort: 80,
     },
   },
 })
