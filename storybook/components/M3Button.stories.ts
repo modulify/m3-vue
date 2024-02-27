@@ -50,6 +50,12 @@ export const FilledButton: Story = {
   },
 }
 
+export const ElevatedButton: Story = {
+  args: {
+    appearance: 'elevated',
+  },
+}
+
 export const OutlinedButton: Story = {
   args: {
     appearance: 'outlined',
