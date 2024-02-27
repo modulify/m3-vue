@@ -19,13 +19,13 @@
     color: var(--m3-sys-primary);
   }
 
-  &_filled:not(&_toggleable),
-  &_filled#{&}_toggleable#{&}_selected {
+  &_filled:not(:disabled):not(&_toggleable),
+  &_filled:not(:disabled)#{&}_toggleable#{&}_selected {
     background: var(--m3-sys-primary);
     color: var(--m3-sys-on-primary);
   }
 
-  &_filled#{&}_toggleable {
+  &_filled#{&}_toggleable:not(:disabled) {
     background: var(--m3-sys-surface-container-highest);
     color: var(--m3-sys-primary);
   }
@@ -141,6 +141,9 @@
     --m3-ripple-effect-duration: 0.75s;
     background: var(--m3-state-layers-primary-opacity-020);
   }
+
+  &_toggleable              .m3-ripple { background: var(--m3-state-layers-on-surface-variant-opacity-020); }
+  &_toggleable#{&}_selected .m3-ripple { background: var(--m3-state-layers-primary-opacity-020); }
 
   &_filled .m3-ripple { background: var(--m3-state-layers-on-primary-opacity-020); }
   &_tonal  .m3-ripple { background: var(--m3-state-layers-on-secondary-container-opacity-020); }
