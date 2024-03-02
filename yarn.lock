@@ -2016,6 +2016,7 @@ __metadata:
     "@storybook/addon-essentials": "npm:^8.0.0-rc.1"
     "@storybook/addon-interactions": "npm:^8.0.0-rc.1"
     "@storybook/addon-links": "npm:^8.0.0-rc.1"
+    "@storybook/addon-themes": "npm:^8.0.0-rc.1"
     "@storybook/blocks": "npm:^8.0.0-rc.1"
     "@storybook/test": "npm:^8.0.0-rc.1"
     "@storybook/vue3": "npm:^8.0.0-rc.1"
@@ -2395,6 +2396,15 @@ __metadata:
     "@storybook/global": "npm:^5.0.0"
     ts-dedent: "npm:^2.0.0"
   checksum: 10c0/56bcc3dbf3083195762e3f5468c6cab09337f2f1de6fb9c57cec918af57b09fe32a8809c906415837300675fd01882799c6961d80c2d57724e208e05133b1045
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-themes@npm:^8.0.0-rc.1":
+  version: 8.0.0-rc.1
+  resolution: "@storybook/addon-themes@npm:8.0.0-rc.1"
+  dependencies:
+    ts-dedent: "npm:^2.0.0"
+  checksum: 10c0/9740e028cc02b7acb5c19076c9b418eee6dad6a6a844d134a15fcf5ada3e58d31e29542abb4f892c8eb03c23fec6d9c3c6b709b31611880fbd2d1ef40c6944e2
   languageName: node
   linkType: hard
 

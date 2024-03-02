@@ -1,7 +1,9 @@
-import type { Preview } from '@storybook/vue3'
+import type { Preview, VueRenderer } from '@storybook/vue3'
 
 import '../assets/stylesheets/normalize.scss'
 import '../assets/stylesheets/index.scss'
+
+import { withThemeByClassName } from '@storybook/addon-themes'
 
 export default {
   parameters: {
@@ -11,11 +13,14 @@ export default {
         date: /Date$/i,
       },
     },
-    backgrounds: {
-      values: [
-        { name: 'light', value: '#FEF7FF' },
-        { name: 'dark', value: '#141218' },
-      ],
-    },
   },
+  decorators: [
+    withThemeByClassName<VueRenderer>({
+      themes: {
+        light: 'm3-theme-light',
+        dark: 'm3-theme-dark',
+      },
+      defaultTheme: 'light',
+    }),
+  ],
 } as Preview
