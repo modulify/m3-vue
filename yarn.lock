@@ -2037,6 +2037,7 @@ __metadata:
     ts-node: "npm:^10.9.2"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.3"
+    uuid: "npm:^9.0.1"
     vite: "npm:^5.1.4"
     vite-svg-loader: "npm:^5.1.0"
     vue: "npm:^3.4.19"
@@ -10445,7 +10446,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^9.0.0":
+"uuid@npm:^9.0.0, uuid@npm:^9.0.1":
   version: 9.0.1
   resolution: "uuid@npm:9.0.1"
   bin:

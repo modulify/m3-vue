@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/vue3'
 import '../assets/stylesheets/normalize.scss'
 import '../assets/stylesheets/index.scss'
 
-const preview: Preview = {
+export default {
   parameters: {
     controls: {
       matchers: {
@@ -11,7 +11,11 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      values: [
+        { name: 'light', value: '#FEF7FF' },
+        { name: 'dark', value: '#141218' },
+      ],
+    },
   },
-}
-
-export default preview
+} as Preview
