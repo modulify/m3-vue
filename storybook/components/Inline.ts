@@ -29,5 +29,8 @@ export default ({ is, children, tag }) => {
     return () => app.unmount()
   })
 
-  return React.createElement(tag ?? 'div', { class: 'sb-unstyled', ref })
+  return React.createElement(tag ?? 'div', {
+    className: 'sb-unstyled',
+    ref,
+  })
 }
