@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { M3Checkbox } from '@/components/checkbox'
 import { ref } from 'vue'
 
+import makeId from '@/utils/id'
+
 const meta = {
   title: 'Components/M3Checkbox',
 
@@ -16,7 +18,10 @@ const meta = {
     components: { M3Checkbox },
 
     setup () {
+      const id = makeId('m3-checkbox')
+
       return {
+        id,
         args,
         model: ref(false),
       }
@@ -25,9 +30,10 @@ const meta = {
     template: `
         <div style="display: flex; align-items: center;">
             <M3Checkbox
+                :id="id"
                 v-model:model="model"
                 v-bind="args"
-            /> Choice
+            /> <label :for="id">Choice</label>
         </div>
     `,
   }),
