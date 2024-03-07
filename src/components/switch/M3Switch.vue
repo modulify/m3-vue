@@ -44,6 +44,7 @@
             type="checkbox"
             aria-hidden="true"
             class="m3-switch__input"
+            tabindex="-1"
             @change="onChange"
             @focus="focused = true"
             @blur="focused = false"

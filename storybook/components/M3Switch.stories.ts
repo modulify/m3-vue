@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { M3Switch } from '@/components/switch'
 import { ref } from 'vue'
 
+import makeId from '@/utils/id'
+
 const meta = {
   title: 'Components/M3Switch',
 
@@ -23,6 +25,7 @@ const meta = {
 
     setup () {
       return {
+        id: makeId('m3-switch'),
         args,
         checked: ref(false),
       }
@@ -31,9 +34,11 @@ const meta = {
     template: `
         <div style="display: flex; align-items: center; gap: 8px;">
             <M3Switch
+                :id="id"
+                :aria-labelledby="id + '-label'"
                 v-model:checked="checked"
                 v-bind="args"
-            /> Choice
+            /> <label :id="id + '-label'" :for="id">Choice</label>
         </div>
     `,
   }),
