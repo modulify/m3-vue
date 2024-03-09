@@ -1,4 +1,8 @@
 export {
+  M3Badge,
+} from '@/components/badge'
+
+export {
   M3Button,
 } from '@/components/button'
 

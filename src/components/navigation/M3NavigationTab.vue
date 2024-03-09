@@ -58,19 +58,16 @@
             </slot>
         </div>
 
-        <span
+        <M3Badge
             v-if="'badge' in $slots || badged"
             :aria-hidden="inDrawer ? 'true' : 'false'"
             :class="{
                 'm3-navigation-tab__badge': true,
                 'm3-navigation-tab__badge_labelled': 'badge' in $slots,
-                'm3-badge': true,
-                'm3-badge_labelled': 'badge' in $slots,
             }"
-            role="status"
         >
             <slot name="badge" />
-        </span>
+        </M3Badge>
     </div>
 </template>
 
@@ -78,7 +75,8 @@
 import type { Ref } from 'vue'
 import type { Appearance } from '~types/components/navigation'
 
-import { M3Link } from '../link'
+import { M3Badge } from '@/components/badge'
+import { M3Link } from '@/components/link'
 import { M3NavigationAppearance } from './injections'
 
 import {
