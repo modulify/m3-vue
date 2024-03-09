@@ -15,10 +15,15 @@ export {
 } from '@/components/fab-button'
 
 export {
+  M3Icon,
   M3IconAppearance,
   defineM3Icon,
   provideM3IconAppearance,
 } from '@/components/icon'
+
+export {
+  M3IconButton,
+} from '@/components/icon-button'
 
 export {
   M3Link,
@@ -42,6 +47,7 @@ export {
 } from '@/components/plane-tooltip'
 
 export {
+  M3Popper,
   vM3PopperCloser,
 } from '@/components/popper'
 
