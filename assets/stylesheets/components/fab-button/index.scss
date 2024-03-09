@@ -27,6 +27,11 @@
     box-shadow: var(--m3-elevation-4);
   }
 
+  &:focus,
+  &:active {
+    box-shadow: var(--m3-elevation-3);
+  }
+
   &_secondary {
     --m3-ripple-color: var(--m3-state-layers-on-secondary-container-opacity-012);
     background: var(--m3-sys-secondary-container);

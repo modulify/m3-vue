@@ -3,15 +3,23 @@
 
 .m3-button {
   --m3-icon-size: 18px;
+  --state-color-hover: transparent;
+  --state-color-focus: transparent;
+  --state-color-disabled: transparent;
+  --text-color: var(--m3-sys-on-surface);
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;
   height: 40px;
   border-radius: 100px;
+  color: var(--text-color);
   text-decoration: none;
   outline: none;
   overflow: hidden;
-  transition: m3-sys-motion-standard(background);
+  transition:
+    m3-sys-motion-standard(background),
+    m3-sys-motion-standard(color)
+  ;
   position: relative;
 
   &,
@@ -46,6 +54,12 @@
   }
 
   &_filled {
+    --m3-ripple-color: var(--m3-state-layers-on-primary-opacity-020);
+    --state-color-hover: var(--m3-state-layers-on-primary-opacity-008);
+    --state-color-focus: var(--m3-state-layers-on-primary-opacity-012);
+    --state-color-disabled: var(--m3-state-layers-on-surface-opacity-012);
+    --text-color: var(--m3-sys-on-primary);
+
     &:not(:disabled) {
       background: var(--m3-sys-primary);
     }
@@ -67,24 +81,30 @@
   &_outlined {
     border: 1px solid var(--m3-sys-outline);
 
-    &:not(:disabled):hover {
-      background: var(--m3-state-layers-primary-opacity-008);
-    }
-
-    &:not(:disabled):focus {
-      border: 1px solid var(--m3-sys-primary);
-    }
-
-    &:not(:disabled):active {
-      border: 1px solid var(--m3-sys-outline);
-    }
+    &:not(:disabled):focus  { border: 1px solid var(--m3-sys-primary); }
+    &:not(:disabled):active { border: 1px solid var(--m3-sys-outline); }
 
     &:disabled {
       border-color: var(--m3-state-layers-on-surface-opacity-012);
     }
   }
 
+  &_elevated,
+  &_outlined,
+  &_text {
+    --m3-ripple-color: var(--m3-state-layers-primary-opacity-020);
+    --state-color-hover: var(--m3-state-layers-primary-opacity-008);
+    --state-color-focus: var(--m3-state-layers-primary-opacity-012);
+    --text-color: var(--m3-sys-primary);
+  }
+
   &_tonal {
+    --m3-ripple-color: var(--m3-state-layers-on-secondary-container-opacity-020);
+    --state-color-hover: var(--m3-state-layers-on-secondary-container-opacity-008);
+    --state-color-focus: var(--m3-state-layers-on-secondary-container-opacity-012);
+    --state-color-disabled: var(--m3-state-layers-on-surface-opacity-012);
+    --text-color: var(--m3-sys-on-secondary-container);
+
     &:not(:disabled) {
       background: var(--m3-sys-secondary-container);
     }
@@ -117,80 +137,22 @@
     gap: 8px;
     background: transparent;
     border-radius: inherit;
-    color: var(--m3-sys-on-surface);
     overflow: hidden;
+    transition: m3-sys-motion-standard(background);
     position: relative;
   }
 
-  &_filled:not(:disabled) &__state {
-    color: var(--m3-sys-on-primary);
-  }
+  &:hover    &__state { background: var(--state-color-hover); }
+  &:focus    &__state,
+  &:active   &__state { background: var(--state-color-focus); }
+  &:disabled &__state { background: var(--state-color-disabled); }
 
-  &_filled:not(:disabled):hover &__state {
-    background: var(--m3-state-layers-on-primary-opacity-008);
-  }
-
-  &_filled:not(:disabled):focus  &__state { background: var(--m3-state-layers-on-primary-opacity-012); }
-  &_filled:not(:disabled):active &__state { background: var(--m3-state-layers-on-primary-opacity-020); }
-
-  &_filled:disabled &__state {
-    background: var(--m3-state-layers-on-surface-opacity-012);
-  }
-
-  &_elevated:not(:disabled) &__state,
-  &_outlined:not(:disabled) &__state {
-    color: var(--m3-sys-primary);
-  }
-
-  &_elevated:not(:disabled):hover &__state,
-  &_outlined:not(:disabled):hover &__state {
-    background: var(--m3-state-layers-primary-opacity-008);
-  }
-
-  &_elevated:not(:disabled):focus &__state,
-  &_outlined:not(:disabled):focus &__state {
-    background: var(--m3-state-layers-primary-opacity-012);
-  }
-
-  &_elevated:not(:disabled):active &__state,
-  &_outlined:not(:disabled):active &__state {
-    background: var(--m3-state-layers-primary-opacity-020);
-  }
+  &_has-leading-icon  &__state { padding-left: 16px; }
+  &_has-trailing-icon &__state { padding-right: 16px; }
 
   &_text &__state {
     padding-left: 12px;
     padding-right: 12px;
-  }
-
-  &_text:not(:disabled) &__state {
-    color: var(--m3-sys-primary);
-  }
-
-  &_text:not(:disabled):hover  &__state { background: var(--m3-state-layers-primary-opacity-008); }
-  &_text:not(:disabled):focus  &__state { background: var(--m3-state-layers-primary-opacity-012); }
-  &_text:not(:disabled):active &__state { background: var(--m3-state-layers-primary-opacity-020); }
-
-  &_tonal:not(:disabled) &__state {
-    color: var(--m3-sys-on-secondary-container);
-  }
-
-  &_tonal:not(:disabled):hover  &__state { background: var(--m3-state-layers-on-secondary-container-opacity-008); }
-  &_tonal:not(:disabled):focus  &__state { background: var(--m3-state-layers-on-secondary-container-opacity-012); }
-  &_tonal:not(:disabled):active &__state { background: var(--m3-state-layers-on-secondary-container-opacity-020); }
-  &_tonal:disabled &__state { background: var(--m3-state-layers-on-surface-opacity-012); }
-
-  &_elevated#{&}_has-leading-icon &__state,
-  &_filled#{&}_has-leading-icon   &__state,
-  &_outlined#{&}_has-leading-icon &__state,
-  &_tonal#{&}_has-leading-icon    &__state {
-    padding-left: 16px;
-  }
-
-  &_elevated#{&}_has-trailing-icon &__state,
-  &_filled#{&}_has-trailing-icon   &__state,
-  &_outlined#{&}_has-trailing-icon &__state,
-  &_tonal#{&}_has-trailing-icon    &__state {
-    padding-right: 16px;
   }
 
   &_text#{&}_has-leading-icon  &__state { padding-right: 16px; }
@@ -201,26 +163,12 @@
   }
 
   &__icon svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
   }
 
   &:disabled &__icon,
   &:disabled &__text {
     opacity: 0.38;
-  }
-
-  .m3-ripple {
-    background: var(--m3-state-layers-on-primary-opacity-020);
-  }
-
-  &_elevated .m3-ripple,
-  &_outlined .m3-ripple,
-  &_text     .m3-ripple {
-    background: var(--m3-state-layers-primary-opacity-020);
-  }
-
-  &_tonal .m3-ripple {
-    background: var(--m3-state-layers-on-secondary-container-opacity-020);
   }
 }
