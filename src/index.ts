@@ -11,6 +11,10 @@ export {
 } from '@/components/checkbox'
 
 export {
+  M3FabButton,
+} from '@/components/fab-button'
+
+export {
   M3IconAppearance,
   defineM3Icon,
   provideM3IconAppearance,

@@ -12,14 +12,21 @@ import {
 import { applyRippleEffect } from '@/components/ripple'
 import { normalize } from '@/utils/runtime'
 
+import {
+  size,
+  variant,
+} from '@/components/fab-button/properties'
+
 const wrap = (content: [VNode, boolean][]) => content.map(([node, isIcon]) => h('span', {
   class: {
-    'm3-button__icon': isIcon,
-    'm3-button__text': !isIcon,
+    'm3-fab-button__icon': isIcon,
+    'm3-fab-button__text': !isIcon,
   },
 }, { ...node }))
 
 export default defineComponent({
+  name: 'M3FabButton',
+
   props: {
     type: {
       type: String as PropType<HTMLButtonElement['type']>,
@@ -36,11 +43,9 @@ export default defineComponent({
       default: undefined,
     },
 
-    appearance: {
-      type: String as PropType<'elevated' | 'filled' | 'outlined' | 'text' | 'tonal'>,
-      validator: (appearance: string) => ['elevated', 'filled', 'outlined', 'text', 'tonal'].includes(appearance),
-      default: 'filled',
-    },
+    variant,
+
+    size,
 
     disabled: {
       type: Boolean,
@@ -52,6 +57,11 @@ export default defineComponent({
   setup (props, { attrs, expose, slots }) {
     const root = ref<InstanceType<(typeof M3Link)> | null>(null)
 
+    expose({
+      focus: () => root.value?.focus(),
+      blur: () => root.value?.blur(),
+    })
+
     const onInteraction = (event: KeyboardEvent | MouseEvent) => {
       const _button = root.value?.getElement()
       if (_button) {
@@ -59,14 +69,15 @@ export default defineComponent({
       }
     }
 
-    expose({
-      focus: () => root.value?.focus(),
-      blur: () => root.value?.blur(),
-    })
-
     const onClick = (event: MouseEvent) => onInteraction(event)
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        event.preventDefault()
+        onInteraction(event)
+      }
+    }
     const onKeyup = (event: KeyboardEvent) => {
-      if (event.key === 'Enter') {
+      if (event.code === 'Enter') {
         onInteraction(event)
       }
     }
@@ -85,16 +96,18 @@ export default defineComponent({
         href: props.href,
         ...attrs,
         class: [attrs.class, {
-          ['m3-button']: true,
-          ['m3-button_' + props.appearance]: true,
-          ['m3-button_has-leading-icon']: hasText && hasLeadingIcon,
-          ['m3-button_has-trailing-icon']: hasText && hasTrailingIcon,
+          ['m3-fab-button']: true,
+          ['m3-fab-button_' + props.variant]: props.variant !== variant.default,
+          ['m3-fab-button_' + props.size]: props.size !== size.default,
+          ['m3-fab-button_has-leading-icon']: hasText && hasLeadingIcon,
+          ['m3-fab-button_has-trailing-icon']: hasText && hasTrailingIcon,
         }],
         disabled: props.disabled,
         onClick,
+        onKeydown,
         onKeyup,
       }, () => h('span', {
-        class: 'm3-button__state',
+        class: 'm3-fab-button__state',
       }, wrap(content)))
     }
   },

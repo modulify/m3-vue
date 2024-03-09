@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
+import { M3FabButton } from '@/components/fab-button'
 import { M3Icon } from '@/components/icon'
 import { M3IconButton } from '@/components/icon-button'
 
@@ -38,6 +39,7 @@ const meta = {
     name: 'M3NavigationStory',
 
     components: {
+      M3FabButton,
       M3Icon,
       M3IconButton,
       M3Navigation,
@@ -64,6 +66,10 @@ const meta = {
                 >
                     <M3Icon name="menu" />
                 </M3IconButton>
+
+                <M3FabButton variant="tertiary">
+                    <M3Icon name="edit" />
+                </M3FabButton>
             </template>
 
             <template #header>

@@ -5,7 +5,7 @@ import { v4 } from 'uuid'
 
 import { createApp, h } from 'vue'
 
-export default ({ is, children, tag }) => {
+export default ({ is, children, tag, ...props }) => {
   const ref = React.useRef(null)
 
   React.useEffect(() => {
@@ -21,7 +21,7 @@ export default ({ is, children, tag }) => {
         }
       },
 
-      render: () => h(is),
+      render: () => h(is, props),
     })
 
     app.mount(ref.current)
