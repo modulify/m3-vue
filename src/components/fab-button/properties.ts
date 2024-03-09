@@ -5,9 +5,10 @@ import type {
   Variant,
 } from '~types/components/fab-button'
 
-export const sizes: Size[] = ['sm', 'md', 'lg']
-
-export const variants: Variant[] = ['primary', 'secondary', 'surface', 'tertiary']
+import {
+  sizes,
+  variants,
+} from '@/components/fab-button/values'
 
 export const size: Prop<Size, 'md'> = {
   type: String as PropType<Size>,

@@ -6,7 +6,7 @@ import { M3Icon } from '@/components/icon'
 import {
   sizes,
   variants,
-} from '@/components/fab-button/properties'
+} from '@/components/fab-button/values'
 
 const meta = {
   title: 'Components/M3FabButton',

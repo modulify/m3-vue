@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { M3Button } from '@/components/button'
+import { M3Icon } from '@/components/icon'
 
 const meta = {
   title: 'Components/M3Button',
@@ -24,16 +25,16 @@ const meta = {
   },
 
   render: (args: unknown) => ({
-    components: { M3Button },
+    components: {
+      M3Button,
+    },
 
     setup () {
       return { args }
     },
 
-    template: '<M3Button v-bind="args">Text</M3Button>',
+    template: '<M3Button v-bind="args">Share</M3Button>',
   }),
-
-  tags: ['autodocs'],
 
   parameters: {
     layout: 'centered',
@@ -44,32 +45,24 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const FilledButton: Story = {
-  args: {
-    appearance: 'filled',
-  },
-}
+export const WithTextOnly: Story = {}
 
-export const ElevatedButton: Story = {
-  args: {
-    appearance: 'elevated',
-  },
-}
+export const WithLeadingIcon: Story = {
+  render: (args: unknown) => ({
+    components: {
+      M3Button,
+      M3Icon,
+    },
 
-export const OutlinedButton: Story = {
-  args: {
-    appearance: 'outlined',
-  },
-}
+    setup () {
+      return { args }
+    },
 
-export const TextButton: Story = {
-  args: {
-    appearance: 'text',
-  },
-}
-
-export const TonalButton: Story = {
-  args: {
-    appearance: 'tonal',
-  },
+    template: `
+        <M3Button v-bind="args">
+            <M3Icon name="share" />
+            Share
+        </M3Button>
+    `,
+  }),
 }

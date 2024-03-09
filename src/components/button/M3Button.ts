@@ -12,6 +12,8 @@ import {
 import { applyRippleEffect } from '@/components/ripple'
 import { normalize } from '@/utils/runtime'
 
+import * as properties from '@/components/button/properties'
+
 const wrap = (content: [VNode, boolean][]) => content.map(([node, isIcon]) => h('span', {
   class: {
     'm3-button__icon': isIcon,
@@ -36,11 +38,7 @@ export default defineComponent({
       default: undefined,
     },
 
-    appearance: {
-      type: String as PropType<'elevated' | 'filled' | 'outlined' | 'text' | 'tonal'>,
-      validator: (appearance: string) => ['elevated', 'filled', 'outlined', 'text', 'tonal'].includes(appearance),
-      default: 'filled',
-    },
+    appearance: properties.appearance,
 
     disabled: {
       type: Boolean,
@@ -65,8 +63,14 @@ export default defineComponent({
     })
 
     const onClick = (event: MouseEvent) => onInteraction(event)
+    const onKeydown = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        event.preventDefault()
+        onInteraction(event)
+      }
+    }
     const onKeyup = (event: KeyboardEvent) => {
-      if (event.key === 'Enter') {
+      if (event.code === 'Enter') {
         onInteraction(event)
       }
     }
@@ -92,6 +96,7 @@ export default defineComponent({
         }],
         disabled: props.disabled,
         onClick,
+        onKeydown,
         onKeyup,
       }, () => h('span', {
         class: 'm3-button__state',
