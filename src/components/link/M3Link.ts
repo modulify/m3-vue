@@ -9,6 +9,7 @@ import type { RouteLocationRaw } from 'vue-router'
 
 import {
   defineComponent,
+  getCurrentInstance,
   h,
   ref,
   resolveComponent,
@@ -17,13 +18,25 @@ import {
 type None = Record<string, never>
 type Root = ComponentPublicInstance | HTMLElement | null
 
-const resolveLinkComponent = () => {
-  const RouterLink = resolveComponent('RouterLink')
-  if (typeof RouterLink === 'object') {
-    return RouterLink
+function componentExists(name) {
+  const instance = getCurrentInstance();
+
+  if (!instance) {
+    throw new Error('componentExists must be called within a setup function');
   }
 
-  return null
+  return !!instance.appContext.components[name];
+}
+
+const resolveLinkComponent = () => {
+  if (!componentExists('RouterLink')) {
+    return null
+  }
+
+  const RouterLink = resolveComponent('RouterLink')
+  return typeof RouterLink === 'object'
+    ? RouterLink
+    : null
 }
 
 const toElement = (ref: Ref<Root>) => {

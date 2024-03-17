@@ -63,6 +63,10 @@ export {
 } from '@/components/scroll-rail'
 
 export {
+  M3Select,
+} from '@/components/select'
+
+export {
   M3SideSheet,
 } from '@/components/side-sheet'
 
