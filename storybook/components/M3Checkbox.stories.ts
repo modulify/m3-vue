@@ -28,7 +28,7 @@ const meta = {
     },
 
     template: `
-        <div style="display: flex; align-items: center;">
+        <div class="flex-row">
             <M3Checkbox
                 :id="id"
                 v-model:model="model"
@@ -37,8 +37,6 @@ const meta = {
         </div>
     `,
   }),
-
-  tags: ['autodocs'],
 
   parameters: {
     layout: 'centered',
@@ -49,4 +47,4 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const BooleanCheckbox: Story = {}
+export const Standard: Story = {}

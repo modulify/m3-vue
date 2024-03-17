@@ -3,6 +3,8 @@ import type { Preview, VueRenderer } from '@storybook/vue3'
 import '../assets/stylesheets/normalize.scss'
 import '../assets/stylesheets/index.scss'
 
+import './stylesheets/utils.scss'
+
 import { withThemeByClassName } from '@storybook/addon-themes'
 
 export default {
