@@ -11,10 +11,6 @@ function getAbsolutePath (value: string): string {
 }
 
 const config: StorybookConfig = {
-  stories: [
-    '../storybook/**/*.mdx',
-    '../storybook/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
   addons: [
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-a11y'),
@@ -22,6 +18,18 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-themes'),
+  ],
+  core: {
+    builder: {
+      name: '@storybook/builder-vite',
+      options: {
+        viteConfigPath: './vite.config.ts',
+      },
+    },
+  },
+  stories: [
+    './**/*.mdx',
+    './**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   framework: {
     name: getAbsolutePath('@storybook/vue3-vite'),

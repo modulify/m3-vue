@@ -1,6 +1,6 @@
 import type { Entry } from './types'
 
-import M3Popper from '../M3Popper'
+import { M3Popper } from '../popper'
 
 import { defineComponent, h, ref } from 'vue'
 import render from '@/utils/render'

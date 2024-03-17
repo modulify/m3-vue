@@ -1,3 +1,6 @@
+import '../assets/stylesheets/normalize.scss'
+import '../assets/stylesheets/index.scss'
+
 export {
   M3Badge,
 } from '@/components/badge'
