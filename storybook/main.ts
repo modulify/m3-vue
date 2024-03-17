@@ -27,17 +27,20 @@ const config: StorybookConfig = {
       },
     },
   },
-  stories: [
-    './**/*.mdx',
-    './**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
+  docs: {
+    autodocs: 'tag',
+  },
   framework: {
     name: getAbsolutePath('@storybook/vue3-vite'),
     options: {},
   },
-  docs: {
-    autodocs: 'tag',
-  },
+  staticDirs: [
+    { from: './assets', to: '/assets' },
+  ],
+  stories: [
+    './**/*.mdx',
+    './**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
 }
 
 export default config

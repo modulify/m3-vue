@@ -2026,7 +2026,9 @@ __metadata:
     "@storybook/addon-themes": "npm:^8.0.0"
     "@storybook/blocks": "npm:^8.0.0"
     "@storybook/builder-vite": "npm:^8.0.0"
+    "@storybook/manager-api": "npm:^8.0.0"
     "@storybook/test": "npm:^8.0.0"
+    "@storybook/theming": "npm:^8.0.0"
     "@storybook/vue3": "npm:^8.0.0"
     "@storybook/vue3-vite": "npm:^8.0.0"
     "@types/lodash.isequal": "npm:^4.5.8"
@@ -2838,7 +2840,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/manager-api@npm:8.0.0":
+"@storybook/manager-api@npm:8.0.0, @storybook/manager-api@npm:^8.0.0":
   version: 8.0.0
   resolution: "@storybook/manager-api@npm:8.0.0"
   dependencies:
@@ -2959,7 +2961,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/theming@npm:8.0.0":
+"@storybook/theming@npm:8.0.0, @storybook/theming@npm:^8.0.0":
   version: 8.0.0
   resolution: "@storybook/theming@npm:8.0.0"
   dependencies:
