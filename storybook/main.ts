@@ -41,6 +41,10 @@ const config: StorybookConfig = {
     './**/*.mdx',
     './**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
+  viteFinal: async (config) => {
+    config.server.hmr.clientPort = 80
+    return config
+  },
 }
 
 export default config

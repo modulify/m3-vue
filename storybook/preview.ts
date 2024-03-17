@@ -17,7 +17,15 @@ export default {
       },
     },
     options: {
-      storySort: (a, b) => a.id === b.id ? 0 : a.id.localeCompare(b.id, undefined, { numeric: true }),
+      storySort: (a, b) => {
+        return a.id.endsWith('docs') && !b.id.endsWith('docs')
+          ? -1
+          : !a.id.endsWith('docs') && b.id.endsWith('docs')
+            ? 1
+            : a.id === b.id
+              ? 0
+              : a.id.localeCompare(b.id, undefined, { numeric: true })
+      },
     },
   },
   decorators: [

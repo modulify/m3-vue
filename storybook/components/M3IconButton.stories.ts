@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { M3Icon } from '@/components/icon'
 import { M3IconButton } from '@/components/icon-button'
 
+import { ref } from 'vue'
+
 const meta = {
   title: 'Components/M3IconButton',
 
@@ -14,13 +16,21 @@ const meta = {
       options: ['filled', 'outlined', 'standard', 'tonal'],
     },
 
+    toggleable: {
+      control: false,
+    },
+
+    selected: {
+      control: false,
+    },
+
     disabled: {
       control: 'boolean',
     },
   },
 
   args: {
-    appearance: 'filled',
+    appearance: 'standard',
     disabled: false,
   },
 
@@ -50,26 +60,33 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const StandardButton: Story = {
-  args: {
-    appearance: 'standard',
-  },
-}
+export const Standard: Story = {}
 
-export const FilledButton: Story = {
-  args: {
-    appearance: 'filled',
-  },
-}
+export const Toggleable: Story = {
+  render: (args: unknown) => ({
+    components: {
+      M3Icon,
+      M3IconButton,
+    },
 
-export const OutlinedButton: Story = {
-  args: {
-    appearance: 'outlined',
-  },
-}
+    setup () {
+      const selected = ref(false)
 
-export const TonalButton: Story = {
-  args: {
-    appearance: 'tonal',
-  },
+      return {
+        args,
+        selected,
+      }
+    },
+
+    template: `
+        <M3IconButton
+            :selected="selected"
+            v-bind="args"
+            toggleable
+            @click="selected = !selected"
+        >
+            <M3Icon name="favorite" />
+        </M3IconButton>
+    `,
+  }),
 }
