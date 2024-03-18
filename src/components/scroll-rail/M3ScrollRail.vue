@@ -152,6 +152,7 @@ const onMousemove = (event: MouseEvent) => {
 }
 
 const onMouseup = () => dragging.value = false
+const onScroll = () => sync()
 
 let observer: ResizeObserver | null = null
 
@@ -166,7 +167,7 @@ onMounted(() => {
     observer = new ResizeObserver(() => sync())
     observer.observe(_box)
 
-    _box.addEventListener('scroll', () => sync())
+    _box.addEventListener('scroll', onScroll)
   }
 
   window.addEventListener('mousemove', onMousemove)
@@ -180,6 +181,7 @@ onBeforeUnmount(() => {
   observer?.disconnect()
   observer = null
 
+  box.value?.removeEventListener('scroll', onScroll)
   box.value = null
 })
 </script>

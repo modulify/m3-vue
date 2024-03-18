@@ -216,6 +216,7 @@
   }
 
   &__button {
+    --m3-ripple-color: var(--m3-state-layers-on-surface-opacity-020);
     display: flex;
     align-self: stretch;
     border-radius: 100px;
@@ -271,16 +272,13 @@
     background: var(--m3-state-layers-on-surface-opacity-008);
   }
 
-  &__button:focus &__state,
+  &__button:focus  &__state,
   &__button:active &__state {
     background: var(--m3-state-layers-on-surface-opacity-012);
   }
 
-  &__button .m3-ripple {
-    background: var(--m3-state-layers-on-surface-opacity-020);
-  }
-
   &_active &__button {
+    --m3-ripple-color: var(--m3-state-layers-on-secondary-container-opacity-020);
     background: var(--m3-sys-secondary-container);
     color: var(--m3-sys-on-secondary-container);
   }
@@ -288,10 +286,6 @@
   &_active &__button:hover  &__state { background: var(--m3-state-layers-on-secondary-container-opacity-008); }
   &_active &__button:focus  &__state { background: var(--m3-state-layers-on-secondary-container-opacity-012); }
   &_active &__button:active &__state { background: var(--m3-state-layers-on-secondary-container-opacity-020); }
-
-  &_active &__button .m3-ripple {
-    background: var(--m3-state-layers-on-secondary-container-opacity-020);
-  }
 
   &__icon {
     @include m3-shape-square(24px);

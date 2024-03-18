@@ -10,8 +10,8 @@
         }"
         :disabled="disabled"
         v-bind="$attrs"
-        @click="onClick"
     >
+        <M3Ripple :owner="ref(root)" />
         <span class="m3-icon-button__state">
             <slot />
         </span>
@@ -22,8 +22,9 @@
 import type { PropType } from 'vue'
 import type { Appearance } from '~types/components/navigation'
 
+import { M3Ripple } from '@/components/ripple'
+
 import { ref } from 'vue'
-import { applyRippleEffect } from '../ripple'
 import { provideM3IconAppearance } from '@/components/icon/injections'
 
 const props = defineProps({
@@ -62,11 +63,4 @@ defineExpose({
 })
 
 provideM3IconAppearance(() => props.toggleable && props.selected ? 'filled' : 'outlined')
-
-const onClick = (event: MouseEvent) => {
-  const el = root.value
-  if (el) {
-    applyRippleEffect(el, event)
-  }
-}
 </script>

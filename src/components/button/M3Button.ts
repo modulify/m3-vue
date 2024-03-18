@@ -2,14 +2,15 @@ import type { PropType, VNode } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 import { M3Link } from '@/components/link'
+import { M3Ripple } from '@/components/ripple'
 
 import {
+  computed,
   defineComponent,
   h,
   ref,
 } from 'vue'
 
-import { applyRippleEffect } from '@/components/ripple'
 import { normalize } from '@/utils/runtime'
 
 import * as properties from '@/components/button/properties'
@@ -49,29 +50,23 @@ export default defineComponent({
   // eslint-disable-next-line max-lines-per-function
   setup (props, { attrs, expose, slots }) {
     const root = ref<InstanceType<(typeof M3Link)> | null>(null)
-
-    const onInteraction = (event: KeyboardEvent | MouseEvent) => {
-      const _button = root.value?.getElement()
-      if (_button) {
-        applyRippleEffect(_button, event)
-      }
-    }
+    const rootElement = computed(() => root.value?.getElement() ?? null)
+    const ripple = ref<InstanceType<typeof M3Ripple> | null>(null)
 
     expose({
       focus: () => root.value?.focus(),
       blur: () => root.value?.blur(),
     })
 
-    const onClick = (event: MouseEvent) => onInteraction(event)
     const onKeydown = (event: KeyboardEvent) => {
       if (event.code === 'Space') {
         event.preventDefault()
-        onInteraction(event)
+        ripple.value?.activate(event)
       }
     }
     const onKeyup = (event: KeyboardEvent) => {
       if (event.code === 'Enter') {
-        onInteraction(event)
+        ripple.value?.activate(event)
       }
     }
 
@@ -95,12 +90,12 @@ export default defineComponent({
           ['m3-button_has-trailing-icon']: hasText && hasTrailingIcon,
         }],
         disabled: props.disabled,
-        onClick,
         onKeydown,
         onKeyup,
-      }, () => h('span', {
-        class: 'm3-button__state',
-      }, wrap(content)))
+      }, () => [
+        h(M3Ripple, { ref: ripple, owner: rootElement }),
+        h('span', { class: 'm3-button__state' }, wrap(content)),
+      ])
     }
   },
 })

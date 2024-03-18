@@ -22,6 +22,8 @@
             class="m3-navigation-tab__button"
             @click="onClick"
         >
+            <M3Ripple :owner="ref(buttonElement)" centered />
+
             <span class="m3-navigation-tab__state">
                 <span class="m3-navigation-tab__icon">
                     <slot />
@@ -77,6 +79,8 @@ import type { Appearance } from '~types/components/navigation'
 
 import { M3Badge } from '@/components/badge'
 import { M3Link } from '@/components/link'
+import { M3Ripple } from '@/components/ripple'
+
 import { M3NavigationAppearance } from './injections'
 
 import {
@@ -84,7 +88,6 @@ import {
   inject,
   ref,
 } from 'vue'
-import { applyRippleEffect } from '../ripple'
 import makeId from '@/utils/id'
 import { provideM3IconAppearance } from '@/components/icon/injections'
 import { useBreakpoint } from '@/composables/breakpoint'
@@ -124,6 +127,7 @@ const id = makeId('m3-navigation-item')
 const appearance = inject<Ref<Appearance>>(M3NavigationAppearance, ref('auto'))
 const breakpoint = useBreakpoint()
 const button = ref<(typeof M3Link) | null>(null)
+const buttonElement = computed(() => button.value?.getElement())
 
 const inDrawer = computed(() => breakpoint.value.ge('large') || appearance.value === 'drawer')
 
@@ -141,11 +145,6 @@ defineExpose({
 const onClick = (event: MouseEvent) => {
   if (props.prevent) {
     event.preventDefault()
-  }
-
-  const _button = button.value
-  if (_button) {
-    applyRippleEffect(_button.getElement() as HTMLElement, event)
   }
 
   emit('navigate')

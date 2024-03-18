@@ -1,6 +1,8 @@
 @import "../../basics/motion";
 
 .m3-icon-button {
+  --m3-ripple-color: var(--m3-state-layers-primary-opacity-020);
+  --m3-ripple-effect-duration: #{m3-sys-motion-duration('extra-long1')};
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -137,18 +139,13 @@
     background: var(--m3-state-layers-inverse-on-surface-opacity-020);
   }
 
-  .m3-ripple {
-    --m3-ripple-effect-duration: 0.75s;
-    background: var(--m3-state-layers-primary-opacity-020);
-  }
+  &_toggleable              { --m3-ripple-color: var(--m3-state-layers-on-surface-variant-opacity-020); }
+  &_toggleable#{&}_selected { --m3-ripple-color: var(--m3-state-layers-primary-opacity-020); }
 
-  &_toggleable              .m3-ripple { background: var(--m3-state-layers-on-surface-variant-opacity-020); }
-  &_toggleable#{&}_selected .m3-ripple { background: var(--m3-state-layers-primary-opacity-020); }
+  &_filled { --m3-ripple-color: var(--m3-state-layers-on-primary-opacity-020); }
+  &_tonal  { --m3-ripple-color: var(--m3-state-layers-on-secondary-container-opacity-020); }
 
-  &_filled .m3-ripple { background: var(--m3-state-layers-on-primary-opacity-020); }
-  &_tonal  .m3-ripple { background: var(--m3-state-layers-on-secondary-container-opacity-020); }
-
-  &_outlined#{&}_toggleable#{&}_selected .m3-ripple { background: var(--m3-state-layers-inverse-on-surface-opacity-020); }
+  &_outlined#{&}_toggleable#{&}_selected { --m3-ripple-color: var(--m3-state-layers-inverse-on-surface-opacity-020); }
 
   svg {
     width: 100%;

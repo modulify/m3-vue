@@ -1,5 +1,6 @@
 <template>
     <span
+        ref="root"
         :aria-checked="checked ? 'true' : 'false'"
         :aria-disabled="disabled ? 'true' : 'false'"
         :class="{
@@ -16,7 +17,9 @@
         @focus="focus"
         @keydown.space="click"
     >
-        <span ref="state" class="m3-checkbox__state" />
+        <M3Ripple :owner="ref(root)" />
+
+        <span class="m3-checkbox__state" />
 
         <input
             :id="id"
@@ -45,13 +48,12 @@ import type { PropType } from 'vue'
 
 import IconCheckmark from './checkmark.svg'
 import IconIndeterminate from './indeterminate.svg'
+import { M3Ripple } from '@/components/ripple'
 
 import {
   computed,
   ref,
 } from 'vue'
-
-import { applyRippleEffect } from '@/components/ripple'
 
 import makeId from '@/utils/id'
 
@@ -117,8 +119,8 @@ const emit = defineEmits([
   'update:model',
 ])
 
+const root = ref<HTMLElement | null>(null)
 const input = ref<HTMLInputElement | null>(null)
-const state = ref<HTMLElement | null>(null)
 const focused = ref(false)
 
 const click = () => input.value?.click()
@@ -158,13 +160,8 @@ const onChange = (event: InputEvent) => {
   emit('update:model', value)
 }
 
-const onClick = (event: MouseEvent) => {
+const onClick = () => {
   click()
   focus()
-
-  const el = state.value
-  if (el) {
-    applyRippleEffect(el, event)
-  }
 }
 </script>

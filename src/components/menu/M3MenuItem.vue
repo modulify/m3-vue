@@ -8,9 +8,10 @@
             'm3-menu-item_selected': selected,
             'm3-menu-item_disabled': disabled,
         }"
-        @click="onInteraction"
-        @keyup.enter="onInteraction"
+        @keyup.enter="event => ripple?.activate(event)"
     >
+        <M3Ripple ref="ripple" :owner="ref(rootElement)" />
+
         <span class="m3-menu-item__state">
             <span
                 v-if="'leading' in $slots"
@@ -38,9 +39,12 @@ import type { PropType } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 import { M3Link } from '@/components/link'
+import { M3Ripple } from '@/components/ripple'
 
-import { applyRippleEffect } from '@/components/ripple'
-import { ref } from 'vue'
+import {
+  computed,
+  ref,
+} from 'vue'
 
 defineProps({
   to: {
@@ -66,11 +70,6 @@ defineProps({
 })
 
 const root = ref<InstanceType<(typeof M3Link)> | null>(null)
-
-const onInteraction = (event: KeyboardEvent | MouseEvent) => {
-  const _root = root.value
-  if (_root) {
-    applyRippleEffect(_root.getElement() as HTMLElement, event)
-  }
-}
+const rootElement = computed(() => root.value?.getElement() ?? null)
+const ripple = ref<InstanceType<typeof M3Ripple> | null>(null)
 </script>

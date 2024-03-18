@@ -29,7 +29,10 @@ const meta = {
     },
   },
 
+  // eslint-disable-next-line max-lines-per-function
   render: (args: unknown) => ({
+    name: 'M3SelectStory',
+
     components: {
       M3Select,
     },
@@ -82,6 +85,8 @@ export const WithIcons: Story = {
 
   // eslint-disable-next-line max-lines-per-function
   render: (args: unknown) => ({
+    name: 'M3SelectStory',
+
     components: {
       CountryFlag,
       M3Icon,

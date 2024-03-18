@@ -59,6 +59,10 @@ export {
 } from '@/components/rich-tooltip'
 
 export {
+  M3Ripple,
+} from '@/components/ripple'
+
+export {
   M3ScrollRail,
 } from '@/components/scroll-rail'
 
