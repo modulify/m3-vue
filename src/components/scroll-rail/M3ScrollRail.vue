@@ -5,7 +5,7 @@
             'm3-scroll-rail': true,
             'm3-scroll-rail_horizontal': horizontal,
             'm3-scroll-rail_active': dragging,
-            'm3-scroll-rail_disabled': disabled,
+            'm3-scroll-rail_disabled': disabled || !enabled,
         }"
     >
         <div

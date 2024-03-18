@@ -24,5 +24,9 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &:has(.m3-scroll-rail_disabled) {
+      padding-right: 0;
+    }
   }
 }
