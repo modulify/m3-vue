@@ -27,7 +27,7 @@
                             :value="s.value"
                         />
 
-                        <label :for="id + '-option-' + i">
+                        <label :for="id + '-option-' + i + '-' + j">
                             {{ s.label }}
                         </label>
                     </div>

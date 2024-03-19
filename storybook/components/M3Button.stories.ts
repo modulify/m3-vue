@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { M3Button } from '@/components/button'
 import { M3Icon } from '@/components/icon'
 
+import * as values from '@/components/button/values'
+
 const meta = {
   title: 'Components/M3Button',
 
@@ -11,7 +13,7 @@ const meta = {
   argTypes: {
     appearance: {
       control: 'select',
-      options: ['elevated', 'filled', 'outlined', 'text', 'tonal'],
+      options: values.appearances,
     },
 
     disabled: {
